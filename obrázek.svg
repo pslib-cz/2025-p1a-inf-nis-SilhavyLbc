@@ -1,0 +1,48 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="500" fill="#f7f7f7" />
+
+  <!-- System boundary -->
+  <rect x="250" y="80" width="400" height="320" fill="#ffffff" stroke="#333333" stroke-width="2" rx="10" ry="10" />
+  <text x="450" y="105" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">
+    Informační systém
+  </text>
+
+  <!-- Actor: Uživatel -->
+  <circle cx="100" cy="150" r="30" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" />
+  <line x1="100" y1="180" x2="100" y2="230" stroke="#1565c0" stroke-width="2" />
+  <line x1="75" y1="205" x2="125" y2="205" stroke="#1565c0" stroke-width="2" />
+  <line x1="100" y1="230" x2="80" y2="270" stroke="#1565c0" stroke-width="2" />
+  <line x1="100" y1="230" x2="120" y2="270" stroke="#1565c0" stroke-width="2" />
+  <text x="100" y="300" font-family="Arial" font-size="14" text-anchor="middle" fill="#333333">
+    Uživatel
+  </text>
+
+  <!-- Use case: Přihlášení -->
+  <ellipse cx="450" cy="170" rx="110" ry="35" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2" />
+  <text x="450" y="175" font-family="Arial" font-size="14" text-anchor="middle" fill="#2e7d32">
+    Přihlášení do systému
+  </text>
+
+  <!-- Use case: Správa dat -->
+  <ellipse cx="450" cy="260" rx="120" ry="35" fill="#fff3e0" stroke="#ef6c00" stroke-width="2" />
+  <text x="450" y="255" font-family="Arial" font-size="14" text-anchor="middle" fill="#ef6c00">
+    Správa záznamů
+  </text>
+  <text x="450" y="272" font-family="Arial" font-size="12" text-anchor="middle" fill="#ef6c00">
+    (vytvoření, úprava, mazání)
+  </text>
+
+  <!-- Use case: Generování reportů -->
+  <ellipse cx="450" cy="350" rx="130" ry="35" fill="#ede7f6" stroke="#5e35b1" stroke-width="2" />
+  <text x="450" y="355" font-family="Arial" font-size="14" text-anchor="middle" fill="#5e35b1">
+    Generování reportů
+  </text>
+
+  <!-- Connections from actor to use cases -->
+  <line x1="130" y1="170" x2="340" y2="170" stroke="#555555" stroke-width="2" />
+  <line x1="130" y1="200" x2="340" y2="250" stroke="#555555" stroke-width="2" />
+  <line x1="120" y1="230" x2="340" y2="340" stroke="#555555" stroke-width="2" />
+
+</svg>
