@@ -41,11 +41,9 @@
   </div>
 
   <p>
-    Use‑case diagram popisuje funkční chování systému z pohledu uživatelů. Ukazuje hlavní aktéry
-    (Klient, Prodejce, Poslíček, Administrátor) a jejich interakce se systémem. Diagram definuje,
-    jaké funkce jsou dostupné jednotlivým rolím a jaké procesy systém vykonává automaticky, například
-    kontrolu dostupnosti nebo přiřazení poslíčka. Slouží jako přehled toho, co systém umí, a tvoří
-    základ pro detailnější návrh.
+Use‑case diagram HerbDelivery zachycuje konkrétní interakce mezi uživateli a systémem v rámci hlavních procesů. Klient zde provádí registraci, přihlášení, správu profilu, výběr produktů, vytvoření objednávky, sledování jejího stavu a následné hodnocení. Prodejce spravuje nabídku produktů, potvrzuje dostupnost a předává zásilky poslíčkům. Poslíček přijímá doručovací úkoly, potvrzuje vyzvednutí a doručení. Administrátor řeší spory, kontroluje uživatele a má přístup k auditním funkcím. Diagram také obsahuje systémové funkce jako automatické přiřazení poslíčka nebo validace dostupnosti, které probíhají bez zásahu uživatele.
+
+Use‑case diagram tak ukazuje, jak jednotlivé role vstupují do procesů, které jsou pro HerbDelivery klíčové — od vytvoření objednávky až po její dokončení. Zároveň definuje hranici systému a ukazuje, které části logiky jsou interní (např. výpočet ceny, kontrola skladových zásob) a které vyžadují interakci s externími službami, jako je platební brána nebo notifikační systém.
   </p>
 </section>
 
@@ -58,11 +56,9 @@
   </div>
 
   <p>
-    Class diagram definuje datový model systému. Obsahuje hlavní entity, jejich atributy, metody
-    a vztahy mezi nimi. Základem je abstraktní třída Uživatel, ze které dědí Klient, Prodejce,
-    Poslíček a Administrátor. Diagram popisuje strukturu objednávek, položek, produktů, plateb
-    a escrow mechanismu. Násobnosti u asociací určují, kolik objektů může být ve vztahu. Diagram
-    slouží jako podklad pro návrh databáze a API.
+Class diagram HerbDelivery popisuje strukturu dat a vztahy mezi entitami, které tvoří jádro systému. Uživatel je modelován jako abstraktní třída s atributy pro identifikaci, kontaktní údaje a autentizaci. Z ní dědí Klient, Prodejce, Poslíček a Administrátor. Objednávka obsahuje stav, cenu, časové údaje a vazby na položky objednávky, které odkazují na konkrétní produkty. Platba a Escrow reprezentují finanční část procesu — Escrow drží prostředky až do potvrzení doručení. Hodnocení je navázáno na dokončené objednávky a obsahuje textové i číselné ohodnocení.
+
+Diagram také zahrnuje logistické a podpůrné třídy. Poslíček je propojen s úkoly doručení, které obsahují informace o trase a potvrzení jednotlivých kroků. Notifikace jsou reprezentovány jako samostatná entita, která uchovává historii odeslaných zpráv. Datové typy a násobnosti vztahů určují, jaké informace musí být uloženy a jak spolu jednotlivé části systému komunikují. Class diagram tak poskytuje přesný model dat, který odpovídá funkčním požadavkům HerbDelivery.
   </p>
 </section>
 
@@ -75,11 +71,9 @@
   </div>
 
   <p>
-    Sequence diagram ukazuje časovou posloupnost komunikace mezi částmi systému při zpracování
-    objednávky. Zobrazuje vytvoření objednávky, kontrolu dostupnosti, platbu přes escrow, přiřazení
-    poslíčka, vyzvednutí, doručení a uvolnění platby. Diagram zachycuje i komunikaci s externími
-    službami, jako je platební brána nebo notifikační systém. Je klíčový pro pochopení dynamiky
-    systému a návrh backendových procesů.
+Sequence diagram HerbDelivery popisuje přesnou časovou posloupnost kroků při vytvoření a doručení objednávky. Klient odešle požadavek na vytvoření objednávky, systém ověří dostupnost produktů v databázi a následně inicializuje platbu přes platební bránu. Po potvrzení platby systém uloží stav objednávky a odešle klientovi notifikaci. Následuje automatické přiřazení poslíčka, které probíhá jako interní interakce mezi systémem a databází. Poslíček poté přijme úkol a pokračuje procesem vyzvednutí zásilky u prodejce.
+
+Po vyzvednutí zásilky poslíček doručí objednávku klientovi a potvrdí doručení. Systém následně odešle platební bráně požadavek na uvolnění escrow a po potvrzení provede rozdělení platby mezi prodejce, poslíčka a platformu. Sequence diagram tak ukazuje, jak jednotlivé komponenty spolu komunikují a jaké zprávy si v rámci procesu vyměňují — včetně interakcí s externími službami a interními automatizacemi.
   </p>
 </section>
 
@@ -92,11 +86,9 @@
   </div>
 
   <p>
-    Activity diagram popisuje tok činností v rámci procesu objednávky. Ukazuje jednotlivé kroky
-    od výběru produktů až po hodnocení doručené objednávky. Pomocí rozhodovacích uzlů znázorňuje,
-    jak systém reaguje na různé situace, například nedostupné zboží nebo nenalezení poslíčka.
-    Swimlanes rozdělují odpovědnosti mezi Klienta, Systém, Platební bránu, Poslíčka a Prodejce.
-    Diagram poskytuje přehled o tom, jak proces probíhá napříč celým systémem.
+Activity diagram HerbDelivery popisuje tok činností od výběru produktů až po dokončení objednávky. Klient zahájí proces výběrem produktů, systém ověří jejich dostupnost a v případě úspěchu vytvoří objednávku. Následuje inicializace platby a potvrzení platební bránou. Po úspěšné platbě systém aktualizuje stav objednávky a spustí proces automatického přiřazení poslíčka. Pokud není poslíček dostupný, proces čeká ve smyčce, dokud se nějaký neuvolní.
+
+Po přiřazení poslíčka diagram pokračuje aktivitami spojenými s logistikou — vyzvednutí zásilky, potvrzení předání prodejcem, doručení klientovi a potvrzení doručení. Poté systém požádá platební bránu o uvolnění escrow a provede rozdělení platby. Proces končí odesláním notifikace o dokončení a výzvou k hodnocení. Activity diagram tak ukazuje, jak jednotlivé kroky navazují a jak systém reaguje na různé situace v průběhu objednávky.
   </p>
 </section>
 
@@ -109,11 +101,9 @@
   </div>
 
   <p>
-    Deployment diagram znázorňuje fyzické nasazení systému. Ukazuje klientská zařízení, mobilní
-    aplikaci, webový klient, zařízení poslíčků a backend infrastrukturu. Backend je rozdělen na
-    load balancer, aplikační servery, worker procesy, databázi a objektové úložiště. Diagram také
-    obsahuje externí služby, jako je platební brána, notifikační systém a geolokační služby.
-    Slouží k pochopení architektury systému, jeho škálování a bezpečnostních hranic.
+Deployment diagram HerbDelivery znázorňuje fyzické rozmístění komponent systému. Klientská zařízení (mobilní aplikace, webový klient a aplikace poslíčka) komunikují přes internet s load balancerem, který rozděluje provoz mezi aplikační servery. Tyto servery jsou navrženy jako stateless, což umožňuje horizontální škálování. Worker procesy zpracovávají asynchronní úlohy, jako je odesílání notifikací nebo plánování úkolů pro poslíčky. Databázový server ukládá veškerá perzistentní data, zatímco objektové úložiště slouží pro ukládání médií a logů.
+
+Externí služby, jako je platební brána, notifikační systém a geolokační API, jsou modelovány jako samostatné uzly mimo hlavní infrastrukturu. Aplikační servery s nimi komunikují přes zabezpečené API. Deployment diagram tak ukazuje, jak jsou jednotlivé části systému propojené, jaké komponenty jsou škálovatelné a kde se nachází kritické body infrastruktury, jako je databáze nebo platební adaptér.
   </p>
 </section>
 
