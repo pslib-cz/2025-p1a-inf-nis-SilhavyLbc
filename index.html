@@ -1,11 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informační systém</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HerbDelivery — Dokumentace diagramů</title>
+  <style>
+    body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:24px;color:#111;background:#fff}
+    header{margin-bottom:18px}
+    h1{font-size:22px;margin:0 0 6px}
+    p.lead{margin:0;color:#444}
+    nav{margin:18px 0;padding:12px;border-left:4px solid #2b7cff;background:#f6f9ff}
+    nav a{display:inline-block;margin-right:12px;color:#0b63d6;text-decoration:none;font-weight:600}
+    section{border:1px solid #e6e6e6;padding:16px;margin:18px 0;border-radius:8px}
+    .diagram-box{margin-bottom:14px}
+    .diagram-box img{width:420px;border:1px solid #ccc;background:#fafafa;padding:6px}
+    footer{margin-top:28px;color:#666;font-size:13px}
+  </style>
 </head>
 <body>
-    <img src="./diagrams/obrázek.svg" alt="test">
+
+<header>
+  <h1>HerbDelivery — dokumentace diagramů</h1>
+  <p class="lead">Tento dokument shrnuje význam a obsah pěti hlavních UML diagramů systému HerbDelivery.</p>
+</header>
+
+<nav>
+  <a href="#usecase">Use‑case</a>
+  <a href="#class">Class</a>
+  <a href="#sequence">Sequence</a>
+  <a href="#activity">Activity</a>
+  <a href="#deployment">Deployment</a>
+</nav>
+
+<!-- 1 Use-case -->
+<section id="usecase">
+  <h2>1. Use‑case diagram</h2>
+
+  <div class="diagram-box">
+    <img src="./diagrams/1_use-case.drawio.svg" alt="Use-case diagram">
+  </div>
+
+  <p>
+    Use‑case diagram popisuje funkční chování systému z pohledu uživatelů. Ukazuje hlavní aktéry
+    (Klient, Prodejce, Poslíček, Administrátor) a jejich interakce se systémem. Diagram definuje,
+    jaké funkce jsou dostupné jednotlivým rolím a jaké procesy systém vykonává automaticky, například
+    kontrolu dostupnosti nebo přiřazení poslíčka. Slouží jako přehled toho, co systém umí, a tvoří
+    základ pro detailnější návrh.
+  </p>
+</section>
+
+<!-- 2 Class -->
+<section id="class">
+  <h2>2. Class diagram</h2>
+
+  <div class="diagram-box">
+    <img src="./diagrams/2_class.drawio.svg" alt="Class diagram">
+  </div>
+
+  <p>
+    Class diagram definuje datový model systému. Obsahuje hlavní entity, jejich atributy, metody
+    a vztahy mezi nimi. Základem je abstraktní třída Uživatel, ze které dědí Klient, Prodejce,
+    Poslíček a Administrátor. Diagram popisuje strukturu objednávek, položek, produktů, plateb
+    a escrow mechanismu. Násobnosti u asociací určují, kolik objektů může být ve vztahu. Diagram
+    slouží jako podklad pro návrh databáze a API.
+  </p>
+</section>
+
+<!-- 3 Sequence -->
+<section id="sequence">
+  <h2>3. Sequence diagram</h2>
+
+  <div class="diagram-box">
+    <img src="./diagrams/3_sequence.drawio.svg" alt="Sequence diagram">
+  </div>
+
+  <p>
+    Sequence diagram ukazuje časovou posloupnost komunikace mezi částmi systému při zpracování
+    objednávky. Zobrazuje vytvoření objednávky, kontrolu dostupnosti, platbu přes escrow, přiřazení
+    poslíčka, vyzvednutí, doručení a uvolnění platby. Diagram zachycuje i komunikaci s externími
+    službami, jako je platební brána nebo notifikační systém. Je klíčový pro pochopení dynamiky
+    systému a návrh backendových procesů.
+  </p>
+</section>
+
+<!-- 4 Activity -->
+<section id="activity">
+  <h2>4. Activity diagram</h2>
+
+  <div class="diagram-box">
+    <img src="./diagrams/4_activity.drawio.svg" alt="Activity diagram">
+  </div>
+
+  <p>
+    Activity diagram popisuje tok činností v rámci procesu objednávky. Ukazuje jednotlivé kroky
+    od výběru produktů až po hodnocení doručené objednávky. Pomocí rozhodovacích uzlů znázorňuje,
+    jak systém reaguje na různé situace, například nedostupné zboží nebo nenalezení poslíčka.
+    Swimlanes rozdělují odpovědnosti mezi Klienta, Systém, Platební bránu, Poslíčka a Prodejce.
+    Diagram poskytuje přehled o tom, jak proces probíhá napříč celým systémem.
+  </p>
+</section>
+
+<!-- 5 Deployment -->
+<section id="deployment">
+  <h2>5. Deployment diagram</h2>
+
+  <div class="diagram-box">
+    <img src="./diagrams/5_deployment.drawio.svg" alt="Deployment diagram">
+  </div>
+
+  <p>
+    Deployment diagram znázorňuje fyzické nasazení systému. Ukazuje klientská zařízení, mobilní
+    aplikaci, webový klient, zařízení poslíčků a backend infrastrukturu. Backend je rozdělen na
+    load balancer, aplikační servery, worker procesy, databázi a objektové úložiště. Diagram také
+    obsahuje externí služby, jako je platební brána, notifikační systém a geolokační služby.
+    Slouží k pochopení architektury systému, jeho škálování a bezpečnostních hranic.
+  </p>
+</section>
+
+<footer>
+  Tento dokument slouží jako stručný technický přehled všech hlavních diagramů systému HerbDelivery.
+</footer>
+
 </body>
 </html>
