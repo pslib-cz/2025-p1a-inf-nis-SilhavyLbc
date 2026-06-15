@@ -30,6 +30,8 @@
   <a href="#sequence">Sequence</a>
   <a href="#activity">Activity</a>
   <a href="#deployment">Deployment</a>
+  <a href="#functional">Funkční požadavky</a>
+  <a href="#nonfunctional">Nefunkční požadavky</a>
 </nav>
 
 <!-- 1 Use-case -->
@@ -106,6 +108,230 @@ Deployment diagram HerbDelivery znázorňuje fyzické rozmístění komponent sy
 Externí služby, jako je platební brána, notifikační systém a geolokační API, jsou modelovány jako samostatné uzly mimo hlavní infrastrukturu. Aplikační servery s nimi komunikují přes zabezpečené API. Deployment diagram tak ukazuje, jak jsou jednotlivé části systému propojené, jaké komponenty jsou škálovatelné a kde se nachází kritické body infrastruktury, jako je databáze nebo platební adaptér.
   </p>
 </section>
+
+  <section id="functional">
+    <h2>Funkční požadavky</h2>
+  
+    <div class="diagram-box">
+      <div class="md-content">
+  
+        <h3>1. Uživatelské účty</h3>
+  
+        <h4>Registrace a ověření uživatelů</h4>
+        <ul>
+          <li>Registrace klientů, prodejců a poslíčků</li>
+          <li>Ověření e‑mailu nebo telefonu</li>
+          <li>Standardní onboarding podobný Wolt</li>
+        </ul>
+  
+        <h4>Správa profilu</h4>
+        <ul>
+          <li>Úprava kontaktních údajů</li>
+          <li>Správa platebních metod</li>
+          <li>Správa doručovacích adres</li>
+          <li>Umožňuje rychlé opakované objednávky</li>
+        </ul>
+  
+        <h3>2. Produkty a nabídka</h3>
+  
+        <h4>Přidání produktu</h4>
+        <ul>
+          <li>Název, cena, množství, fotka, popis, kategorie</li>
+          <li>Podobné jako katalog u Wolt Market</li>
+        </ul>
+  
+        <h4>Úprava produktu</h4>
+        <ul>
+          <li>Změna ceny, popisu, fotky nebo množství</li>
+        </ul>
+  
+        <h4>Dostupnost produktu / vyprodáno</h4>
+        <ul>
+          <li>Pokud množství = 0 → produkt se označí jako vyprodáno</li>
+          <li>Klient ho nemůže objednat</li>
+          <li>Splňuje požadavek na blokaci objednávek při nulovém stavu</li>
+        </ul>
+  
+        <h3>3. Prohlížení a filtrování</h3>
+  
+        <h4>Prohlížení nabídky</h4>
+        <ul>
+          <li>Klient vidí všechny dostupné produkty</li>
+        </ul>
+  
+        <h4>Filtrování</h4>
+        <ul>
+          <li>Podle ceny</li>
+          <li>Podle typu bylinky</li>
+          <li>Podle vzdálenosti</li>
+          <li>Podle hodnocení</li>
+        </ul>
+  
+        <h3>4. Objednávky</h3>
+  
+        <h4>Vytvoření objednávky</h4>
+        <ul>
+          <li>Výběr produktu a množství</li>
+          <li>Zadání doručovací adresy</li>
+          <li>Možnost přidat poznámku</li>
+        </ul>
+  
+        <h4>Platba a escrow</h4>
+        <ul>
+          <li>Platba kartou</li>
+          <li>Peníze se drží v escrow do potvrzení doručení</li>
+        </ul>
+  
+        <h3>5. Poslíčci</h3>
+  
+        <h4>Automatické přiřazení poslíčka</h4>
+        <ul>
+          <li>Algoritmus bere v úvahu vzdálenost, dostupnost a kapacitu</li>
+          <li>Poslíček dostane notifikaci</li>
+        </ul>
+  
+        <h4>Přijetí nebo odmítnutí úkolu</h4>
+        <ul>
+          <li>Pokud odmítne, systém nabídne úkol dalšímu poslíčkovi</li>
+        </ul>
+  
+        <h4>Potvrzení vyzvednutí a doručení</h4>
+        <ul>
+          <li>Poslíček potvrdí vyzvednutí</li>
+          <li>Klient potvrdí doručení</li>
+          <li>Možnost foto nebo PIN jako důkaz</li>
+        </ul>
+  
+        <h3>6. Sledování a notifikace</h3>
+  
+        <h4>Sledování objednávky v reálném čase</h4>
+        <ul>
+          <li>Live tracking poslíčka</li>
+          <li>Odhad času doručení</li>
+        </ul>
+  
+        <h4>Notifikace</h4>
+        <ul>
+          <li>Klient: změna stavu objednávky</li>
+          <li>Poslíček: nová objednávka</li>
+          <li>Prodejce: poslíček přijel vyzvednout</li>
+        </ul>
+  
+        <h3>7. Hodnocení a historie</h3>
+  
+        <h4>Hodnocení a recenze</h4>
+        <ul>
+          <li>Klient hodnotí prodejce i poslíčka</li>
+        </ul>
+  
+        <h3>8. Administrace</h3>
+  
+        <h4>Řešení sporů a podpora</h4>
+        <ul>
+          <li>Administrátor řeší reklamace, refundy a chyby v doručení</li>
+        </ul>
+  
+        <h4>Provize a rozdělení plateb</h4>
+        <ul>
+          <li>Po doručení se peníze rozdělí mezi prodejce, poslíčka a platformu</li>
+        </ul>
+  
+        <h4>Bezpečnost a ochrana dat</h4>
+        <ul>
+          <li>GDPR</li>
+          <li>Šifrování</li>
+          <li>Bezpečné ukládání platebních údajů</li>
+        </ul>
+  
+      </div>
+    </div>
+  </section>
+
+  <section id="nonfunctional">
+    <h2>Nefunkční požadavky</h2>
+  
+    <div class="diagram-box">
+      <div class="md-content">
+  
+        <h3>1. Konzistence stavů</h3>
+        <p>
+          Systém musí udržovat jednoznačné a navazující stavy objednávek, plateb a logistických kroků.
+          Každý stav musí odpovídat definovanému procesu a nesmí být možné přeskočit nebo vytvořit stav,
+          který není součástí procesního toku. Přechody mezi stavy musí být deterministické a řízené backendem.
+        </p>
+  
+        <h3>2. Integrita dat</h3>
+        <p>
+          Veškerá data uložená v databázi musí být konzistentní s datovým modelem. Objednávky musí obsahovat
+          platné položky, které odpovídají existujícím produktům. Každý záznam o platbě, escrow, doručovacím
+          úkolu nebo notifikaci musí být jednoznačně propojen s konkrétní objednávkou a uživatelem. Databáze
+          musí uchovávat kompletní historii stavů objednávek a logistických kroků.
+        </p>
+  
+        <h3>3. Oddělení rolí</h3>
+        <p>
+          Systém musí zajistit, že každá role (Klient, Prodejce, Poslíček, Administrátor) má přístup pouze
+          k funkcím, které odpovídají jejímu účelu. Klient nemůže měnit stav doručení, poslíček nemůže upravovat
+          produkty a prodejce nemůže zasahovat do plateb. Oprávnění musí být řízena backendem a nesmí být závislá
+          na klientské aplikaci.
+        </p>
+  
+        <h3>4. Stabilita procesů</h3>
+        <p>
+          Procesy spojené s objednávkou, platbou, přiřazením poslíčka a doručením musí probíhat v definovaném
+          pořadí. Automatické kroky, jako přiřazení poslíčka nebo aktualizace stavu, musí být provedeny spolehlivě
+          a bez nutnosti zásahu uživatele. Backend musí být schopen zpracovat více paralelních požadavků bez
+          narušení konzistence dat.
+        </p>
+  
+        <h3>5. Konzistence komunikace mezi komponentami</h3>
+        <p>
+          Komunikace mezi klientskými aplikacemi, backendem, databází a externími službami musí probíhat podle
+          definované architektury. Load balancer musí směrovat požadavky na aplikační servery, které zpracovávají
+          logiku systému. Worker procesy musí zpracovávat asynchronní úlohy odděleně od hlavního aplikačního toku.
+          Externí služby musí být volány přes jasně definovaná API.
+        </p>
+  
+        <h3>6. Správa chybových stavů</h3>
+        <p>
+          Systém musí umět přejít do alternativních větví procesu v případě chyby, například při nedostupnosti
+          produktu, odmítnutí úkolu poslíčkem nebo neúspěšném potvrzení některého kroku. Chybové stavy musí být
+          jednoznačně identifikovatelné a nesmí narušit konzistenci dat. Systém musí být schopen obnovit proces
+          z posledního platného stavu.
+        </p>
+  
+        <h3>7. Stabilita integračních bodů</h3>
+        <p>
+          Komunikace s externími službami (platební brána, notifikace, geolokace) musí být navržena tak, aby systém
+          dokázal bezpečně pokračovat nebo zastavit proces v případě nedostupnosti externí služby. Každý integrační
+          bod musí mít jasně definované vstupy, výstupy a reakce na chyby.
+        </p>
+  
+        <h3>8. Konzistence architektury</h3>
+        <p>
+          Komponenty systému musí být nasazeny podle definované architektury. Klientské aplikace komunikují s backendem
+          přes load balancer. Aplikační servery musí být stateless, aby bylo možné je škálovat. Worker procesy musí být
+          oddělené od aplikační vrstvy a zpracovávat úlohy, které nevyžadují okamžitou odezvu. Databáze musí poskytovat
+          perzistentní úložiště pro všechny klíčové entity.
+        </p>
+  
+        <h3>9. Ukládání dat</h3>
+        <p>
+          Databázový server musí uchovávat strukturovaná data podle datového modelu (uživatelé, objednávky, produkty,
+          platby, logistické úkoly, notifikace). Objektové úložiště musí být použito pro ukládání nestrukturovaných dat,
+          jako jsou obrázky produktů nebo logy. Každý typ dat musí být uložen v odpovídající vrstvě infrastruktury.
+        </p>
+  
+        <h3>10. Oddělení klientské a serverové logiky</h3>
+        <p>
+          Klientské aplikace (mobilní aplikace, webový klient, aplikace poslíčka) nesmí obsahovat logiku, která ovlivňuje
+          stav objednávek nebo plateb. Veškeré rozhodování musí probíhat na backendu. Klientské aplikace slouží pouze
+          jako rozhraní pro odesílání požadavků a zobrazování dat.
+        </p>
+  
+      </div>
+    </div>
+  </section>
 
 <footer>
   Tento dokument slouží jako stručný technický přehled všech hlavních diagramů systému HerbDelivery.
